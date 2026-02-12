@@ -23,4 +23,12 @@ public class RegisterRequest {
 
     @NotNull(message = "Role é obrigatória")
     private Role role;
+
+    @NotBlank(message = "Nome é obrigatório")
+    private String nome;
+
+    @NotBlank(message = "CPF é obrigatório")
+    private String cpf;
+
+    private String celular;
 }
