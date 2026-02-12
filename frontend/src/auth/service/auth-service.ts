@@ -4,7 +4,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
-    private apiUrl = 'http://localhost:3000/auth'
+    private apiUrl = 'http://localhost:8080/auth'
+    private registerUrl = 'http://localhost:8080/auth/register'
 
     async login(email: string, password: string): Promise<{success: boolean; message?: string}>{
         try {
@@ -45,6 +46,32 @@ export class AuthService {
 
     getToken(): string | null {
         return localStorage.getItem('token');
+    }
+
+    async register(userData: any): Promise<{success: boolean; message?: string}> {
+        try {
+            const response = await fetch(this.registerUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(userData),
+            });
+
+            const data = await response.json().catch(() => ({}));
+            
+            if (!response.ok) {
+              return { 
+                success: false, 
+                message: data.message || data.errors?.[0]?.defaultMessage || 'Erro no servidor' 
+              };
+            }
+
+            return { success: true };
+        } catch (e: any) {
+            return { 
+                success: false, 
+                message: e.message || 'Erro ao realizar cadastro' 
+            };
+        }
     }
 
     private getErrorMessage(status: number): string {

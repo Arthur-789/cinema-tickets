@@ -36,6 +36,16 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private Role role;
 
+    @Column(nullable = false)
+    private String nome;
+
+    @NotBlank
+    @Column(unique = true, nullable = false, length = 11)
+    private String cpf;
+
+    @Column 
+    private String celular;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority("ROLE_" + role.name()));
