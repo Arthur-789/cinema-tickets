@@ -4,12 +4,12 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth/service/auth-service';
 import Swal from 'sweetalert2';
-import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
+import { NgxMaskDirective } from 'ngx-mask';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, NgxMaskDirective, NgxMaskPipe],
+  imports: [ReactiveFormsModule, CommonModule, NgxMaskDirective],
   template: `
   <div class="page-box">
     <div class="register-box"> 
@@ -128,14 +128,8 @@ export class Register {
 
     this.isLoading = true;
 
-    const payload = {
-      email: this.registerForm.value.email,
-      senha: this.registerForm.value.senha,
-      role: this.registerForm.value.role
-    }
-
     try {
-      const result = await this.authService.register(payload);
+      const result = await this.authService.register(this.registerForm.value);
 
       if (result.success) {
         await Swal.fire({
@@ -152,6 +146,7 @@ export class Register {
           text: "Não foi possível realizar o cadastro",
           confirmButtonColor: '#c91432',
         });
+        this.router.navigate(['/cadastro']);
       }
     } catch (e) {
       Swal.fire({
