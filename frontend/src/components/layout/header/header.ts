@@ -1,0 +1,36 @@
+import { Component } from '@angular/core';
+import { AuthService } from '../../../auth/service/auth-service';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+
+@Component({
+  selector: 'app-header',
+  imports: [ CommonModule, RouterModule ],
+  template: `
+    <header class="header">
+      <div class="main-header">
+          <a [routerLink]="authService.isAuthenticated() ? '/home' : '/'" class="logo-wrapper">
+              <img src="ticket.png" class="logo-img">
+              <h1 class="logo-title">Cinema-Tickets</h1>
+          </a>
+          <button *ngIf="authService.authStatus$ | async" type="button" class="logout-button" (click)="onLogout()">
+            <span class="logout-text"> Sair </span>
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          </button>
+      </div>
+    </header>
+  `,
+  styleUrl: './header.css',
+})
+export class Header {
+
+  constructor(
+    public authService: AuthService,
+  ) {}
+
+
+  onLogout() {
+    this.authService.logout();
+  }
+
+}
