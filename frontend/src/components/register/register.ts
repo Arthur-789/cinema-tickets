@@ -109,10 +109,9 @@ export class Register {
     this.registerForm = this.fb.group({
       nome: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
-      senha: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
       celular: [''],
-      cpf: ['', [Validators.required, Validators.pattern(/^[0-9]{11}$/)]],
-      role: ['USER']
+      cpf: ['', [Validators.required, Validators.pattern(/^[0-9]{11}$/)]]
     });
   }
 
