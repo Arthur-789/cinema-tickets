@@ -5,8 +5,7 @@ export interface SessionModel {
     id: number;
     filmeId: number;
     salaId: number;
-    data: string;
-    horario: string;
+    inicio: string;
     tipo: string;
     filme?: MovieModel;
     sala?: RoomModel;
