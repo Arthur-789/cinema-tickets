@@ -6,6 +6,7 @@ import { Register } from '../components/register/register';
 import { Sessao } from '../components/sessao/sessao';
 import { Movie } from '../components/movie/movie';
 import { TicketsPage } from '../components/tickets-page/tickets-page';
+import { Checkout } from '../components/checkout/checkout';
 
 export const routes: Routes = [
     {
@@ -34,4 +35,7 @@ export const routes: Routes = [
         path: 'ingressos',
         component: TicketsPage,
     },
+        path: 'checkout',
+        component: Checkout
+    }
 ];
