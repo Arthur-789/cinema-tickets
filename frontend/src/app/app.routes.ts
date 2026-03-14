@@ -5,6 +5,9 @@ import { authGuard } from '../auth/guard/auth-guard';
 import { Register } from '../components/register/register';
 import { Sessao } from '../components/sessao/sessao';
 import { Movie } from '../components/movie/movie';
+import { TicketValidation } from '../components/ticket-validation/ticket-validation';
+import { TicketsPage } from '../components/tickets-page/tickets-page';
+import { Checkout } from '../components/checkout/checkout';
 
 export const routes: Routes = [
     {
@@ -26,7 +29,20 @@ export const routes: Routes = [
         data: { role: 'ADMIN' }
     },
     {
+        path: 'validar-ingresso',
+        component: TicketValidation,
+        canActivate: [authGuard],
+        data: { role: 'ADMIN' }
+    },
+    {
         path: 'movie/:id',
         component: Movie
     },
+    {
+        path: 'ingressos',
+        component: TicketsPage,
+    },
+        path: 'checkout',
+        component: Checkout
+    }
 ];
