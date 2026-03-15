@@ -1,9 +1,8 @@
 import { Component, OnInit, ChangeDetectorRef, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TicketsService } from '../../general-service/tickets-service/tickets-service';
+import { IngressoService } from '../../general-service/ingresso-service/ingresso.service';
 import { Ticket } from '../../app/core/models/ticket.model';
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-tickets-page',
@@ -68,7 +67,7 @@ import html2canvas from 'html2canvas';
 
                 <div class="detail-item">
                   <span class="detail-label">Assento:</span>
-                  <span>{{ ticket.assentos }}</span>
+                  <span>{{ ticket.assentos.join(', ') }}</span>
                 </div>
               </div>
             </div>
@@ -159,6 +158,7 @@ export class TicketsPage implements OnInit {
 
   constructor(
     private readonly ticketsService: TicketsService,
+    private readonly ingressoService: IngressoService,
     private cdr: ChangeDetectorRef
   ) {}
 
@@ -172,7 +172,7 @@ export class TicketsPage implements OnInit {
     this.cdr.detectChanges();
 
     try {
-      const response = await this.ticketsService.testGetTickets();
+      const response = await this.ticketsService.getTickets();
       
       if (response && Array.isArray(response)) {
         this.tickets = response;
@@ -234,57 +234,22 @@ export class TicketsPage implements OnInit {
   }
 
   async generateTicket(ticket: Ticket): Promise<void> {
-    this.selectedTicket = ticket;
-    this.cdr.detectChanges();
-    
-    setTimeout(async () => {
-      try {
-        const element = document.querySelector('.pdf-render-container .ticket-pdf-container');
-        
-        if (!element) {
-          throw new Error('Elemento não encontrado');
-        }
+    try {
 
-        const canvas = await html2canvas(element as HTMLElement, {
-          scale: 3,
-          backgroundColor: '#ffffff',
-          logging: false,
-          allowTaint: false,
-          useCORS: true,
-          windowWidth: 1480,
-          windowHeight: 630,
-          onclone: (clonedDoc) => {
-            const clonedElement = clonedDoc.querySelector('.ticket-pdf-container') as HTMLElement;
-            if (clonedElement) {
-              clonedElement.style.width = '148mm';
-              clonedElement.style.height = '63mm';
-              clonedElement.style.position = 'relative';
-              clonedElement.style.visibility = 'visible';
-            }
-          }
-        });
+      const dados = {
+        filmeTitulo: ticket.filme,
+        salaNome: ticket.sala,
+        data: ticket.data,
+        horario: ticket.horario,
+        ingressosIds: [ticket.id],
+        assentosCodigos: ticket.assentos
+      };
 
-        const imgData = canvas.toDataURL('image/jpeg', 0.95);
-        
-        const pdf = new jsPDF({
-          orientation: 'landscape',
-          unit: 'mm',
-          format: [148, 63]
-        });
+      await this.ingressoService.gerarPDF(dados);
 
-        const pdfWidth = pdf.internal.pageSize.getWidth();
-        const pdfHeight = pdf.internal.pageSize.getHeight();
-        
-        pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
-        pdf.save(`ingresso-${ticket.id}.pdf`);
-        
-      } catch (error) {
-        console.error('Erro ao gerar PDF:', error);
-        alert('Erro ao gerar o PDF. Tente novamente.');
-      } finally {
-        this.selectedTicket = null;
-        this.cdr.detectChanges();
-      }
-    }, 300);
+    } catch (error) {
+      console.error('Erro ao gerar PDF:', error);
+      alert('Erro ao gerar o PDF. Tente novamente.');
+    }
   }
 }

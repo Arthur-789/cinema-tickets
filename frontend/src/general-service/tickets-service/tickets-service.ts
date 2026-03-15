@@ -11,7 +11,7 @@ export class TicketsService {
 
   constructor(private authService: AuthService) {}
 
-  async testGetTickets(): Promise<any[]> {
+  async getTickets(): Promise<any> {
     const token = this.authService.getToken();
 
     const response = await fetch(`${this.baseUrl}/ingressos`, {
@@ -21,7 +21,14 @@ export class TicketsService {
         'Content-Type': 'application/json'
       }
     });
-    return response.json();
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error("Erro na requisição");
+    }
+
+    return data.ingressos;
   }
 
 }
