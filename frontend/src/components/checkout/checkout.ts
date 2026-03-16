@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 import { CheckoutService } from '../../general-service/checkout-service/checkout-service';
 import { CompraResumo } from '../../app/core/models/checkout.model';
 import { IngressoService } from '../../general-service/ingresso-service/ingresso.service';
-import { NotificationService } from '../../general-service/notification-service/notification.service';
+import { NotificationService } from '../../general-service/notification/notification.service';
 
 @Component({
   selector: 'app-checkout',
@@ -96,6 +96,7 @@ export class Checkout implements OnInit {
         localStorage.removeItem('checkout_data');
         this.router.navigate(['/']);
       });
+      
     } catch (error: any) {
       console.error('Erro retornado: ', error);
       Swal.fire('Erro', error.message || 'Falha no processamento', 'error');

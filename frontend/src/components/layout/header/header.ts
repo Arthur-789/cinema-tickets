@@ -34,7 +34,7 @@ import { NavbarComponent } from '../../../app/notification/notification';
                   <span class="session-text"> Validar Ingresso </span>
                 </button>
                 
-                <app-notification></app-notification>tashed changes
+                <app-notification></app-notification>
               } @else if (router.url !== '/ingressos') {
                 <button type="button" class="tickets-button" [routerLink]="['/ingressos']">
                   <span class="login-text">Ingressos</span>
