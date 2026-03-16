@@ -156,7 +156,8 @@ class SessaoServiceTest {
             sessaoService.buscarPorId(id)
         );
 
-        assertTrue(exception.getMessage().contains("99") || exception.getClass().getSimpleName().equals("SessaoNotFoundException"));
+        assertTrue(exception.getMessage().contains("99"));
+
         verify(sessaoRepository).findWithFilmeAndSalaById(id);
         verifyNoInteractions(sessaoMapper);
     }
