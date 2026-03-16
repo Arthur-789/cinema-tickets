@@ -94,8 +94,19 @@ class NotificacaoServiceTest {
         LocalDateTime agora = LocalDateTime.now();
         Long usuarioId = 1L;
 
-        Notificacao n1 = Notificacao.builder().id(1L).dataEnvioAgendada(agora.minusMinutes(5)).build();
-        Notificacao n2 = Notificacao.builder().id(2L).dataEnvioAgendada(agora.plusMinutes(10)).build();
+        Notificacao n1 = Notificacao.builder()
+                .id(1L)
+                .usuarioId(usuarioId)
+                .enviado(true) 
+                .dataEnvioAgendada(agora.minusHours(1)) 
+                .build();
+
+        Notificacao n2 = Notificacao.builder()
+                .id(2L)
+                .usuarioId(usuarioId)
+                .enviado(false)
+                .dataEnvioAgendada(agora.plusHours(1)) 
+                .build();
 
         when(notificacaoRepository.findByUsuarioIdOrderByDataEnvioAgendadaDesc(usuarioId))
                 .thenReturn(List.of(n1, n2));
