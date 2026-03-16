@@ -70,6 +70,7 @@ h2 {
 .card-sucesso {
   background-color: #28a745;
   color: white;
+  margin-bottom: 2rem;
 }
 
 .resumo-ingresso {
@@ -88,10 +89,68 @@ h2 {
   background-color: #dc3545;
   color: white;
   text-align: center;
+  margin-bottom: 2rem;
 }
 
 .card-invalido {
   background-color: #ffc107;
   color: #333;
   text-align: center;
+  margin-bottom: 2rem;
+}
+
+.historico-section {
+  margin-top: 2rem;
+  border-top: 1px solid #ddd;
+  padding-top: 1.5rem;
+}
+
+.historico-section h3 {
+  color: #333;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.historico-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.historico-item {
+  display: flex;
+  align-items: center; 
+  background-color: #ffffff;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  gap: 15px; 
+}
+
+.status-icon {
+  font-size: 1.5rem;
+}
+
+.historico-info {
+  display: flex;
+  flex-direction: column; 
+  gap: 4px;
+}
+
+.historico-info strong {
+  color: #2c3e50;
+  font-size: 1.05rem;
+}
+
+.historico-info span {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.historico-vazio {
+  text-align: center;
+  color: #888;
+  font-style: italic;
+  padding: 1rem;
 }

@@ -19,7 +19,7 @@
     <div class="resultado-section">
       @if (res.valido && res.dados_ingresso) {
         <div class="card card-sucesso">
-          <h3>✅ Acesso Liberado</h3>
+          <h3><i class="fa-solid fa-circle-check"></i>Acesso Liberado</h3>
           <div class="resumo-ingresso">
             <p><strong>Filme:</strong> {{ res.dados_ingresso.filme }}</p>
             <p><strong>Cliente:</strong> {{ res.dados_ingresso.cliente }}</p>
@@ -29,7 +29,7 @@
       } 
       @else if (!res.valido) {
         <div class="card card-erro">
-          <h3>❌ Acesso Negado</h3>
+          <h3><i class="fa-solid fa-circle-xmark"></i>Acesso Negado</h3>
           <p>{{ res.mensagem }}</p>
         </div>
       }
@@ -39,7 +39,7 @@
   @if (erroNaoEncontrado) {
     <div class="resultado-section">
       <div class="card card-invalido">
-        <h3>⚠️ Código Inválido</h3>
+        <h3><i class="fa-solid fa-triangle-exclamation"></i>Código Inválido</h3>
         <p>Verifique a digitação e tente novamente.</p>
       </div>
     </div>
@@ -51,7 +51,7 @@
     <div class="historico-lista">
       @for (item of historico; track item.codigo) {
         <div class="historico-item">
-          <span class="status-icon">✅</span>
+          <span class="status-icon"><i class="fa-solid fa-circle-check"></i></span>
           <div class="historico-info">
             <strong>{{ item.filme }}</strong>
             <span>Assentos: {{ item.assentos }}</span>

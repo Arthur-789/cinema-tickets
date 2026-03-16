@@ -28,7 +28,6 @@ export class Checkout implements OnInit {
     const data = localStorage.getItem('checkout_data');
     if (data) {
       this.compra = JSON.parse(data);
-      console.log('Dados carregados no Checkout:', this.compra);
     } else {
       this.router.navigate(['/']);
     }
@@ -45,7 +44,6 @@ export class Checkout implements OnInit {
       metodo: this.metodoPagamento.toUpperCase(), 
       tokenPagamento: "TOKEN_PAGAMENTO_" + Math.random().toString(10).substring(7)
     };
-    console.log("Payload enviado: ", payload);
 
     try {
       const resposta = await this.service.processarPagamento(payload);
@@ -67,8 +65,6 @@ export class Checkout implements OnInit {
         assentosCodigos: this.compra?.assentosCodigos || [],
         vouchers: resposta.ingressosIds || []
       };
-
-      console.log(resposta)
 
       Swal.fire({
         icon: 'success',

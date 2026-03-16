@@ -35,7 +35,6 @@ export class TicketValidation implements AfterViewInit {
   }
 
   validarIngresso(): void {
-    console.log('Passo 1: Iniciando validação para o código:', this.codigoVoucher);
     if (!this.codigoVoucher.trim()) return;
 
     this.carregando = true;
@@ -43,11 +42,9 @@ export class TicketValidation implements AfterViewInit {
     this.erroNaoEncontrado = false;
 
     const token = this.authService.getToken() || '';
-    console.log('Passo 2: Chamando o serviço com o token');
 
     this.ticketService.validarIngresso(this.codigoVoucher, token).subscribe({
      next: (response) => {
-        console.log('Passo 3 [SUCESSO]:', response);
         this.carregando = false;
 
         try {
