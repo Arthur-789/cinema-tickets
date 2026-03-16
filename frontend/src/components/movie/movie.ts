@@ -102,7 +102,6 @@ export class Movie implements OnInit {
       return; 
     }
 
-    console.log('Botão comprar clicado! ID da Sessão:', idSessao);
     this.idSessionSelected = idSessao;
     this.showModalSeats = true;
     this.cdr.detectChanges();

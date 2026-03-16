@@ -177,7 +177,6 @@ export class TicketsPage implements OnInit {
       if (response && Array.isArray(response)) {
         this.tickets = response;
         this.sortTickets();
-        console.log('Tickets carregados:', this.tickets.length);
       } else {
         throw new Error('Resposta inválida do servidor');
       }

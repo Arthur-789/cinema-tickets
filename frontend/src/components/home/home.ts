@@ -91,8 +91,6 @@ export class Home implements OnInit {
   private async loadMovies() {
     try {
       this.movies = await this.filmsService.getMovies();
-      console.log('Filmes Carregados:', this.movies.length);
-      console.log(this.movies);
     } catch (error) {
       console.error('Erro ao carregar filmes:', error);
     }
@@ -101,7 +99,6 @@ export class Home implements OnInit {
   private async loadSessions() {
   try {
     this.sessions = await this.sessionService.getSessionsByDate(this.selectedDate);
-    console.log('Sessões Carregadas:', this.sessions.length);
   } catch (error) {
     console.error('Erro ao carregar sessões:', error);
     this.sessions = [];
@@ -111,7 +108,6 @@ export class Home implements OnInit {
   private async loadRooms() {
     try {
       this.rooms = await this.roomService.getRooms();
-      console.log('Salas Carregadas:', this.rooms.length);
     } catch (e) {
       console.error('Erro ao carregar salas:', e);
     }

@@ -154,7 +154,6 @@ export class Register {
       }
     } catch (e) {
       this.isLoading = false;
-      console.log(e);
       Swal.fire({
         icon: 'error',
         title: 'Erro',
