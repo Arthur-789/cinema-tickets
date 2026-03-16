@@ -34,3 +34,8 @@ app:
 jwt:
   secret: ${JWT_SECRET}
   expiration: ${JWT_EXPIRATION_MS}
+
+logging:
+  level:
+    org.hibernate: DEBUG
+    org.springframework.orm.jpa: DEBUG
