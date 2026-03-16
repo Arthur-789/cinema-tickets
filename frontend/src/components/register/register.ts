@@ -140,7 +140,7 @@ export class Register {
           text: 'Sua conta no Cinema Tickets foi criada!',
           confirmButtonColor: getComputedStyle(document.documentElement).getPropertyValue('--success').trim(),
         });
-        this.router.navigate(['/']); // Redireciona para o login
+        this.router.navigate(['/login']); // Redireciona para o login
       } else {
         this.isLoading = false;
 
@@ -154,7 +154,6 @@ export class Register {
       }
     } catch (e) {
       this.isLoading = false;
-      console.log(e);
       Swal.fire({
         icon: 'error',
         title: 'Erro',

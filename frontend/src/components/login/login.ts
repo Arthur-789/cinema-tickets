@@ -104,7 +104,6 @@ export class Login {
         text: 'Erro ao conectar com o servidor, por favor tente novamente mais tarde!',
         confirmButtonColor: getComputedStyle(document.documentElement).getPropertyValue('--danger').trim(),
       });
-      console.log(e);
     } finally {
       this.isLoading = false;
     }

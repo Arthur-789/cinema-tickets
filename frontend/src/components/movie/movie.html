@@ -84,6 +84,16 @@
                     <p class="no-sessions-message">Nenhuma sessão disponível para a data selecionada.</p>
                 }
             </div>
+            @if (movie && movie.mediaAvaliacao != null && movie.mediaAvaliacao != 0) {
+                <div class="rating">
+                    <div class="stars-outer">
+                        <div class="stars-inner" [style.width.%]="movie.mediaAvaliacao * 20"></div>
+                    </div>
+                    <span class="rating-number">{{ movie.mediaAvaliacao.toFixed(1) }}</span>
+                </div>
+            } @else {
+                <div class="rating-unavailable">Nota indisponível.</div>
+            }
         </div>
     </div>
 } @else {

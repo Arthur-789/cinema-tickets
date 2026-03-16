@@ -35,13 +35,14 @@ export const routes: Routes = [
         data: { role: 'ADMIN' }
     },
     {
-        path: 'movie/:id',
+        path: 'filme/:id',
         component: Movie
     },
     {
         path: 'ingressos',
-        component: TicketsPage,
+        component: TicketsPage
     },
+    {
         path: 'checkout',
         component: Checkout
     }

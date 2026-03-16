@@ -13,8 +13,8 @@ import java.util.List;
 @Table(name = "filmes")
 @Getter
 @Builder
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor
+@AllArgsConstructor
 public class Filme {
 
     @Id
@@ -75,6 +75,20 @@ public class Filme {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private StatusFilme status;
+
+    @Column(nullable = false)
+    @Builder.Default
+    private Double mediaAvaliacao = 0.0;
+
+    @Column(nullable = false)
+    @Builder.Default
+    private Integer qtdAvaliacoes = 0;
+
+    public void registrarAvaliacao(int nota) {
+        this.mediaAvaliacao = (this.mediaAvaliacao * this.qtdAvaliacoes + nota)
+                / (this.qtdAvaliacoes + 1);
+        this.qtdAvaliacoes++;
+    }
 
     @Override
     public String toString() {

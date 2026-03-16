@@ -10,9 +10,10 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "sessoes")
 @Getter
+@Setter
 @Builder
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor
+@AllArgsConstructor
 public class Sessao {
 
     @Id

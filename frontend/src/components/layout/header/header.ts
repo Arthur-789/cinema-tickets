@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { AuthService } from '../../../auth/service/auth-service';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
+import { NavbarComponent } from '../../notification/notification';
 
 @Component({
   selector: 'app-header',
-  standalone: true, // Adicionado caso ainda não estivesse
-  imports: [ CommonModule, RouterModule ],
+  standalone: true,
+  imports: [ CommonModule, RouterModule, NavbarComponent ],
   template: `
     <header class="header">
       <div class="main-header">
@@ -25,7 +26,15 @@ import { Router, RouterModule } from '@angular/router';
                   <i class="fa-solid fa-plus"></i>
                   <span class="session-text"> Cadastrar Sessão </span>
                 </button>
+                <button 
+                  type="button" 
+                  class="validate-ticket-button" 
+                  [routerLink]="['/validar-ingresso']">
+                  <i class="fa-solid fa-ticket"></i>
+                  <span class="session-text"> Validar Ingresso </span>
+                </button>
               } @else if (router.url !== '/ingressos') {
+                <app-notification></app-notification>
                 <button type="button" class="tickets-button" [routerLink]="['/ingressos']">
                   <span class="login-text">Ingressos</span>
                   <i class="fa-solid fa-ticket"></i>

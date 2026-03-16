@@ -9,7 +9,6 @@ import java.util.List;
 @Component
 public class FilmeMapper {
 
-    // TODO implementar CRUD de filmes futuramente
 //    public Filme toEntity(FilmeRequest request) {
 //        return Filme.builder()
 //                .titulo(request.getTitulo())
@@ -32,6 +31,8 @@ public class FilmeMapper {
                 .sinopse(filme.getSinopse())
                 .elenco(filme.getElenco())
                 .status(filme.getStatus())
+                .mediaAvaliacao(filme.getMediaAvaliacao())
+                .qtdAvaliacoes(filme.getQtdAvaliacoes())
                 .build();
     }
 

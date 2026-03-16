@@ -43,15 +43,12 @@ export class SeatsModal implements OnInit {
     this.isLoading = true;
     try {
         const res = await this.service.getAssentos(this.sessaoId);
-        console.log('Resposta bruta da API:', res);
 
         if (res && res.assentos) {
         this.assentos = res.assentos;
         } else if (Array.isArray(res)) {
         this.assentos = res;
         }
-
-        console.log('Assentos mapeados para a variável:', this.assentos);
 
         if (this.assentos.length === 0) {
             console.warn('A lista de assentos retornou vazia do servidor.');
